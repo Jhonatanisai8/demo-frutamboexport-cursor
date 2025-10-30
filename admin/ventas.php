@@ -86,6 +86,33 @@ ob_start();
                 </tbody>
             </table>
         </div>
+        
+        <!-- Controles de paginación -->
+        <?php if ($total_pages > 1): ?>
+        <div class="card-footer">
+            <nav aria-label="Navegación de páginas">
+                <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=<?= $page-1 ?>" aria-label="Anterior">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    
+                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                        <li class="page-item <?= ($page == $i) ? 'active' : '' ?>">
+                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
+                    
+                    <li class="page-item <?= ($page >= $total_pages) ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=<?= $page+1 ?>" aria-label="Siguiente">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <?php endif; ?>
     </div>
 </div>
 

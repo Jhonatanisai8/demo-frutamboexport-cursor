@@ -33,7 +33,17 @@ if (($_GET['action'] ?? '') === 'delete') {
     exit;
 }
 
-$clientes = $pdo->query('SELECT * FROM clientes ORDER BY id DESC')->fetchAll();
+// Paginación
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$per_page = 10; // 10 filas por página
+$offset = ($page - 1) * $per_page;
+
+// Consulta para obtener el total de registros
+$total_rows = $pdo->query('SELECT COUNT(*) FROM clientes')->fetchColumn();
+$total_pages = ceil($total_rows / $per_page);
+
+// Consulta paginada
+$clientes = $pdo->query("SELECT * FROM clientes ORDER BY id DESC LIMIT $per_page OFFSET $offset")->fetchAll();
 
 ob_start();
 ?>
@@ -71,6 +81,33 @@ ob_start();
                 </tbody>
             </table>
         </div>
+        
+        <!-- Controles de paginación -->
+        <?php if ($total_pages > 1): ?>
+        <div class="card-footer">
+            <nav aria-label="Navegación de páginas">
+                <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=<?= $page-1 ?>" aria-label="Anterior">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    
+                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                        <li class="page-item <?= ($page == $i) ? 'active' : '' ?>">
+                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
+                    
+                    <li class="page-item <?= ($page >= $total_pages) ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=<?= $page+1 ?>" aria-label="Siguiente">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <?php endif; ?>
     </div>
 </div>
 
