@@ -33,9 +33,9 @@ ob_start(); ?>
             <a href="generate_pdf.php" target="_blank" class="btn btn-outline-secondary btn-sm">
                 <i class="bi bi-download me-1"></i> Exportar PDF
             </a>
-            <button class="btn btn-sm" style="background-color: #00916E; color: white;">
+            <a href="ventas.php" class="btn btn-sm" style="background-color: #00916E; color: white;">
                 <i class="bi bi-plus-lg me-1"></i> Nueva venta
-            </button>
+            </a>
         </div>
     </div>
 
