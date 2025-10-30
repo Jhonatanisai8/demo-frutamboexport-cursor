@@ -40,7 +40,7 @@ ob_start();
 <div class="container">
     <div class="page-header">
         <h3 class="page-title"><i class="bi bi-people text-primary"></i> Clientes</h3>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clienteModal"><i class="bi bi-plus"></i> Nuevo</button>
+        <button class="btn btn-primary" id="btnNuevoCliente"><i class="bi bi-plus"></i> Nuevo</button>
     </div>
 
     <div class="card card-minimal">
@@ -74,52 +74,30 @@ ob_start();
     </div>
 </div>
 
-<!-- Modal Crear/Editar Cliente -->
-<div class="modal fade" id="clienteModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form method="post">
-        <div class="modal-header">
-          <h5 class="modal-title">Cliente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="id" id="id">
-          <div class="mb-3">
-            <label class="form-label">Nombre</label>
-            <input class="form-control" name="nombre" id="nombre" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input class="form-control" name="email" id="email" type="email">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Teléfono</label>
-            <input class="form-control" name="telefono" id="telefono">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button class="btn btn-primary" type="submit">Guardar</button>
-        </div>
-      </form>
-    </div>
-  </div>
- </div>
+
 
 <script>
-let clienteModal;
-document.addEventListener('DOMContentLoaded', ()=>{
-  const el = document.getElementById('clienteModal');
-  clienteModal = new bootstrap.Modal(el);
+document.addEventListener('DOMContentLoaded', function() {
+  // Inicializar el modal correctamente
+  const modalEl = document.getElementById('clienteModal');
+  const clienteModal = new bootstrap.Modal(modalEl);
+  
+  // Botón para nuevo cliente
+  document.getElementById('btnNuevoCliente').addEventListener('click', function() {
+    document.getElementById('clienteForm').reset();
+    document.getElementById('id').value = '';
+    clienteModal.show();
+  });
+  
+  // Función para editar cliente
+  window.openEdit = function(id, nombre, email, telefono) {
+    document.getElementById('id').value = id;
+    document.getElementById('nombre').value = nombre;
+    document.getElementById('email').value = email;
+    document.getElementById('telefono').value = telefono;
+    clienteModal.show();
+  };
 });
-function openEdit(id, nombre, email, telefono){
-  document.getElementById('id').value = id;
-  document.getElementById('nombre').value = nombre;
-  document.getElementById('email').value = email;
-  document.getElementById('telefono').value = telefono;
-  clienteModal.show();
-}
 </script>
 <?php
 $content = ob_get_clean();

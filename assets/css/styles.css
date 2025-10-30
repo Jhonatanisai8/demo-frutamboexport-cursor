@@ -1,9 +1,11 @@
 /* Paleta: Azul #008BF8, Gris claro #E7ECEF */
 :root {
-  --primary: #008BF8;
-  --primary-dark: #0070cc;
-  --primary-light: rgba(0, 139, 248, 0.1);
-  --light: #E7ECEF;
+  --primary: #00916E;
+  --primary-dark: #007559;
+  --primary-light: rgba(0, 145, 110, 0.1);
+  --secondary: #EC9F05;
+  --accent: #F7E733;
+  --light: #f8f9fa;
   --text: #0f172a;
   --text-muted: #64748b;
   --border: #e2e8f0;
@@ -83,7 +85,7 @@ body {
 }
 
 body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: "Poppins", sans-serif;
   color: var(--text);
   background-color: #f8fafc;
   min-height: 100vh;
@@ -94,22 +96,64 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1030;
-  backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  box-shadow: var(--shadow);
+  height: 64px;
+  z-index: 100;
+  background-color: white !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+}
+
+.navbar-sticky .navbar-brand {
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.navbar-sticky .text-muted {
+  color: var(--text-muted) !important;
+}
+
+.navbar-sticky .btn-outline-danger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.navbar-sticky .btn-outline-danger:hover {
+  background-color: var(--danger);
+  color: white;
+}
+
+.navbar-sticky .bi-person-circle {
+  color: var(--primary);
 }
 
 /* Ajustamos el contenido principal para que no se solape con el navbar */
 .container-fluid {
-  padding-top: 64px;
+  padding-top: 80px;
+  position: relative;
+  z-index: 200;
 }
 
 /* Mejoramos la apariencia del sidebar */
+.admin-sidebar-right {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  z-index: 150;
+  background: white;
+  padding: 1rem;
+}
+
 .admin-sidebar-right .card-minimal {
   border: none;
   background: transparent;
   box-shadow: none;
+  height: 100%;
+}
+
+.main-content {
+  margin-right: 280px;
 }
 
 .admin-sidebar-right .list-group-item {
@@ -117,10 +161,118 @@ body {
   margin-bottom: 4px;
   border: none;
   padding: 12px 16px;
+  transition: all 0.3s ease;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.admin-sidebar-right .list-group-item:hover {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.admin-sidebar-right .list-group-item.active {
+  background-color: var(--primary);
+  color: white !important;
+  text-decoration: none;
+}
+
+.admin-sidebar-right .list-group-item.active i {
+  color: white;
+}
+
+.admin-sidebar-right .list-group-item i {
+  color: var(--primary);
+  transition: color 0.3s ease;
 }
 
 .bg-light-soft {
   background-color: var(--light) !important;
+}
+
+/* Estilos para las tarjetas de estadísticas */
+.card {
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.card.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.card.bg-secondary {
+  background-color: var(--secondary) !important;
+}
+
+.card.bg-warning {
+  background-color: var(--accent) !important;
+  color: var(--dark);
+}
+
+.card.bg-info {
+  background-color: var(--secondary) !important;
+}
+
+/* Estilo para el navbar */
+.navbar-sticky {
+  background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-sticky .navbar-brand {
+  color: white;
+  font-size: 1.25rem;
+}
+
+.navbar-sticky .text-muted {
+  color: white !important;
+  opacity: 0.9;
+}
+
+.navbar-sticky .btn-outline-danger {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-sticky .btn-outline-danger:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
+}
+
+.navbar-sticky .bi-person-circle {
+  color: white !important;
+}
+
+/* Estilo para botones */
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+/* Estilo para tablas */
+.table thead th {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
 }
 
 .btn-primary {
@@ -387,7 +539,8 @@ table.table td {
     gap: 12px;
   }
 
-  .table td, .table th {
+  .table td,
+  .table th {
     padding: 12px 8px;
     font-size: 0.875rem;
   }

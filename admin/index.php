@@ -33,18 +33,26 @@ ob_start(); ?>
             <button class="btn btn-outline-secondary btn-sm">
                 <i class="bi bi-download me-1"></i> Exportar
             </button>
-            <button class="btn btn-primary btn-sm">
+            <button class="btn btn-sm" style="background-color: #00916E; color: white;">
                 <i class="bi bi-plus-lg me-1"></i> Nueva venta
             </button>
         </div>
     </div>
 
     <div class="row g-4 mb-4">
-        <?php foreach ($stats as $key => $stat): ?>
+        <?php 
+        $colors = [
+            'clientes' => '#00916E',    // Verde
+            'productos' => '#EC9F05',   // Naranja
+            'ventas' => '#F7E733',      // Amarillo
+            'ingresos' => '#00916E'     // Verde
+        ];
+        foreach ($stats as $key => $stat): 
+        ?>
             <div class="col-md-6 col-lg-3">
                 <div class="card card-minimal">
                     <div class="dashboard-stat">
-                        <div class="dashboard-stat-icon">
+                        <div class="dashboard-stat-icon" style="background-color: <?= $colors[$key] ?>; color: <?= ($key == 'ventas') ? '#000' : '#fff' ?>;">
                             <i class="bi <?= $stat['icon'] ?>"></i>
                         </div>
                         <div class="dashboard-stat-info">
@@ -61,10 +69,10 @@ ob_start(); ?>
         <div class="col-lg-8">
             <div class="card card-minimal">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">Últimas ventas</h5>
+                    <h5 class="card-title mb-3" style="color: #EC9F05;">Últimas ventas</h5>
                     <div class="table-responsive">
                         <table class="table table-striped">
-                            <thead>
+                            <thead style="background-color: #F7E733;">
                                 <tr>
                                     <th>Cliente</th>
                                     <th>Producto</th>

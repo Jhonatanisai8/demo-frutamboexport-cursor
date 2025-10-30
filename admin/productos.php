@@ -64,45 +64,28 @@ ob_start();
     </div>
 </div>
 
-<!-- Modal Crear/Editar Producto -->
-<div class="modal fade" id="productoModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form method="post">
-        <div class="modal-header">
-          <h5 class="modal-title">Producto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="id" id="id">
-          <div class="mb-3">
-            <label class="form-label">Nombre</label>
-            <input class="form-control" name="nombre" id="nombre" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Precio</label>
-            <input class="form-control" name="precio" id="precio" type="number" step="0.01" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button class="btn btn-primary" type="submit">Guardar</button>
-        </div>
-      </form>
-    </div>
-  </div>
- </div>
+
 
 <script>
 let productoModal;
 document.addEventListener('DOMContentLoaded', ()=>{
   const el = document.getElementById('productoModal');
   productoModal = new bootstrap.Modal(el);
+  
+  // Asegurarse de que el botón "Nuevo" funcione correctamente
+  document.querySelector('button[data-bs-toggle="modal"][data-bs-target="#productoModal"]').addEventListener('click', function() {
+    // Limpiar el formulario al abrir el modal para nuevo producto
+    document.getElementById('producto_id').value = '';
+    document.getElementById('producto_nombre').value = '';
+    document.getElementById('producto_precio').value = '';
+    productoModal.show();
+  });
 });
+
 function openEdit(id, nombre, precio){
-  document.getElementById('id').value = id;
-  document.getElementById('nombre').value = nombre;
-  document.getElementById('precio').value = precio;
+  document.getElementById('producto_id').value = id;
+  document.getElementById('producto_nombre').value = nombre;
+  document.getElementById('producto_precio').value = precio;
   productoModal.show();
 }
 </script>

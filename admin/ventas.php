@@ -30,18 +30,29 @@ if (($_GET['action'] ?? '') === 'delete') {
     exit;
 }
 
-$rows = $pdo->query('SELECT v.id, c.nombre AS cliente, p.nombre AS producto, p.precio, v.cantidad, v.fecha, (p.precio*v.cantidad) total
+// Paginación
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$per_page = 10; // 10 filas por página
+$offset = ($page - 1) * $per_page;
+
+// Consulta para obtener el total de registros
+$total_rows = $pdo->query('SELECT COUNT(*) FROM ventas')->fetchColumn();
+$total_pages = ceil($total_rows / $per_page);
+
+// Consulta paginada
+$rows = $pdo->query("SELECT v.id, c.nombre AS cliente, p.nombre AS producto, p.precio, v.cantidad, v.fecha, (p.precio*v.cantidad) total
 FROM ventas v
 JOIN clientes c ON c.id=v.cliente_id
 JOIN productos p ON p.id=v.producto_id
-ORDER BY v.id DESC')->fetchAll();
+ORDER BY v.id DESC
+LIMIT $per_page OFFSET $offset")->fetchAll();
 
 ob_start();
 ?>
 <div class="container">
-    <div class="page-header">
-        <h3 class="page-title"><i class="bi bi-receipt text-primary"></i> Ventas</h3>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ventaModal"><i class="bi bi-plus"></i> Nueva</button>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="page-title"><i class="bi bi-receipt"></i> Ventas</h3>
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ventaModal"><i class="bi bi-plus"></i> Nueva</button>
     </div>
 
     <div class="card card-minimal">
@@ -61,7 +72,7 @@ ob_start();
                 <tbody>
                     <?php foreach ($rows as $r): ?>
                         <tr>
-                            <td><span class="badge badge-soft">#<?= $r['id'] ?></span></td>
+                            <td><span class="badge bg-light text-dark">#<?= $r['id'] ?></span></td>
                             <td><?= htmlspecialchars($r['cliente']) ?></td>
                             <td><?= htmlspecialchars($r['producto']) ?></td>
                             <td><?= $r['cantidad'] ?></td>
@@ -78,54 +89,7 @@ ob_start();
     </div>
 </div>
 
-<!-- Modal Crear/Editar Venta -->
-<div class="modal fade" id="ventaModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form method="post">
-        <div class="modal-header">
-          <h5 class="modal-title">Venta</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="id" id="id">
-          <div class="mb-3">
-            <label class="form-label">Cliente</label>
-            <select class="form-select" name="cliente_id" id="cliente_id" required>
-              <option value="">Cliente...</option>
-              <?php foreach ($clientes as $c): ?>
-                <option value="<?= $c['id'] ?>"><?= htmlspecialchars($c['nombre']) ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Producto</label>
-            <select class="form-select" name="producto_id" id="producto_id" required>
-              <option value="">Producto...</option>
-              <?php foreach ($productos as $p): ?>
-                <option value="<?= $p['id'] ?>"><?= htmlspecialchars($p['nombre']) ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div class="row g-2">
-            <div class="col-md-6">
-              <label class="form-label">Cantidad</label>
-              <input class="form-control" type="number" min="1" name="cantidad" id="cantidad" value="1" required>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label">Fecha</label>
-              <input class="form-control" type="date" name="fecha" id="fecha" value="<?= date('Y-m-d') ?>" required>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button class="btn btn-primary" type="submit">Guardar</button>
-        </div>
-      </form>
-    </div>
-  </div>
- </div>
+<!-- El modal de ventas ahora se carga desde modals.php -->
 <?php
 $content = ob_get_clean();
 include __DIR__ . '/layout.php';
