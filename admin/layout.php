@@ -46,11 +46,12 @@
 <body>
   <nav class="navbar navbar-dark bg-success navbar-sticky">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">
-        <span class="fw-semibold">Panel Administrativo</span>
+      <span class="navbar-brand mb-0 h1 d-flex align-items-center gap-3">
+        <img src="/assets/imgs/logo.jpg" alt="FruTamboExport" style="height:40px; width:auto;" class="rounded-2" />
+        <span class="fw-semibold ms-3">Panel Administrativo</span>
       </span>
       <div class="d-flex align-items-center gap-4">
-        <img src="/assets/imgs/logo.jpg" alt="FruTamboExport" style="height:40px; width:auto;" class="rounded-2" />
+        <!-- Espacio para otros elementos de navegación si se necesitan -->
       </div>
     </div>
   </nav>

@@ -25,9 +25,9 @@ try {
 ob_start(); ?>
 <div class="container">
     <div class="page-header">
-        <h2 class="page-title">
-            <i class="bi bi-grid"></i>
-            Dashboard
+        <h2 class="page-title d-flex align-items-center">
+            <i class="bi bi-grid me-2"></i>
+            <span>Dashboard</span>
         </h2>
         <div class="btn-group">
             <button class="btn btn-outline-secondary btn-sm">
