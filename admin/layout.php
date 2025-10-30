@@ -47,7 +47,7 @@
   <nav class="navbar navbar-dark bg-success navbar-sticky">
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1 d-flex align-items-center">
-        <img src="/assets/imgs/logo.jpg" alt="FruTamboExport" style="height:50px; width:auto; margin-right:15px;" class="rounded-2" />
+        <img src="/assets/imgs/logo.png" alt="FruTamboExport" style="height:50px; width:auto; margin-right:15px;" class="rounded-2" />
         <span class="fw-bold">Panel Administrativo</span>
       </span>
       <div class="d-flex align-items-center gap-4">

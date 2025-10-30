@@ -19,7 +19,7 @@
   <nav class="navbar navbar-expand-lg bg-white border-bottom navbar-sticky">
     <div class="container">
       <a class="navbar-brand fw-bold text-primary d-flex align-items-center gap-2" href="/">
-        <img src="/assets/imgs/logo.jpg" alt="FruTamboExport" style="height:36px; width:auto;" />
+        <img src="/assets/imgs/logo.png" alt="FruTamboExport" style="height:36px; width:auto;" />
         <span class="d-none d-sm-inline">FruTamboExport</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

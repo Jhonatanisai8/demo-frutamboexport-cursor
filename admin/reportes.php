@@ -16,19 +16,28 @@ ob_start();
     <div class="row g-3">
         <div class="col-md-4">
             <div class="card card-minimal p-3">
-                <div class="text-muted">Clientes</div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-people-fill text-primary fs-4 me-2"></i>
+                    <div class="text-muted">Clientes</div>
+                </div>
                 <div class="fs-3 fw-bold"><?= intval($totales['clientes'] ?? 0) ?></div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card card-minimal p-3">
-                <div class="text-muted">Productos</div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-box-seam-fill text-success fs-4 me-2"></i>
+                    <div class="text-muted">Productos</div>
+                </div>
                 <div class="fs-3 fw-bold"><?= intval($totProd['productos'] ?? 0) ?></div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card card-minimal p-3">
-                <div class="text-muted">Ventas</div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-cart-fill text-warning fs-4 me-2"></i>
+                    <div class="text-muted">Ventas</div>
+                </div>
                 <div class="fs-3 fw-bold"><?= intval($ventas['num_ventas'] ?? 0) ?></div>
                 <div class="text-muted">Total: S/ <?= number_format(floatval($ventas['total'] ?? 0), 2) ?></div>
             </div>

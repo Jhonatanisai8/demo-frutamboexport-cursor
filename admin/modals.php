@@ -50,8 +50,12 @@
             <label class="form-label">Nombre</label>
             <select class="form-select" name="nombre" id="producto_nombre" required>
               <option value="">Seleccione un producto...</option>
-              <option value="Mango">Mango</option>
-              <option value="Palta">Palta</option>
+              <option value="MANGO HADEN">MANGO HADEN</option>
+              <option value="MANGO KENT">MANGO KENT</option>
+              <option value="MANGO EDWARD">MANGO EDWARD</option>
+              <option value="PALTA HASS">PALTA HASS</option>
+              <option value="PALTA FUERTE">PALTA FUERTE</option>
+              <option value="MANGO NAVAL">MANGO NAVAL</option>
             </select>
           </div>
           <div class="mb-3">

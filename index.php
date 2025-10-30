@@ -223,7 +223,7 @@
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="assets/imgs/logo.jpg" alt="Logo FruTamboExport" width="110" height="90" class="me-2">
+        <img src="assets/imgs/logo.png" alt="Logo FruTamboExport" width="110" height="90" class="me-2">
         FruTamboExport
       </a>
       <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -286,6 +286,7 @@
   <!-- PRODUCTOS -->
   <section id="PRODUCTOS" class="container my-5">
     <h2 class="section-title"><strong><span style="color:#03BB85;">PRODUCTOS DE EXCELENTE CALIDAD</span></strong></h2>
+  
     <div class="row g-4">
       <!-- 1 -->
       <div class="col-md-4">

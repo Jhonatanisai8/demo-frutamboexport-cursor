@@ -112,7 +112,7 @@ try {
     </head>
     <body>
         <div class="header">
-            <img src="data:image/jpeg;base64,' . base64_encode(file_get_contents(__DIR__ . '/../assets/imgs/logo.jpg')) . '" alt="FruTamboExport Logo" class="logo">
+            <img src="data:image/jpeg;base64,' . base64_encode(file_get_contents(__DIR__ . '/../assets/imgs/logo.png')) . '" alt="FruTamboExport Logo" class="logo">
             <h1>Reporte del Dashboard - FruTamboExport</h1>
             <div class="date">Generado el: ' . date('d/m/Y H:i:s') . '</div>
         </div>
