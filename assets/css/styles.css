@@ -1,0 +1,59 @@
+/* Paleta: Azul #008BF8, Gris claro #E7ECEF */
+:root {
+  --primary: #008BF8;
+  --light: #E7ECEF;
+  --text: #0f172a;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background-color: #ffffff;
+}
+
+.navbar-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  backdrop-filter: blur(6px);
+}
+
+.bg-light-soft {
+  background-color: var(--light) !important;
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.section {
+  padding: 72px 0;
+}
+
+.hero {
+  background: linear-gradient(180deg, rgba(0,139,248,0.08), rgba(231,236,239,0.35));
+}
+
+.card-minimal {
+  border: 1px solid #eef2f7;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+  border-radius: 12px;
+}
+
+.admin-sidebar-right {
+  position: sticky;
+  top: 88px;
+}
+
+table.table thead th {
+  background-color: var(--light);
+}
+
+.form-inline-gap > * { margin-right: 8px; }
+
+
