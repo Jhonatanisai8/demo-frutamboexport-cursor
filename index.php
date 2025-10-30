@@ -9,117 +9,210 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> FruTamboExport - Empresa de Mango</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  </style>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
     body {
-      background-color: #FFB74D;
-      font-family: "Poppins", sans-serif;
+      background-color: #fff8ed;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+    }
+    
+    .navbar { 
+      background-color: #03BB85; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 12px 0;
+    }
+    
+    .navbar .nav-link { 
+      color: white; 
+      margin: 0 10px; 
+      font-weight: 500; 
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 8px 0;
+    }
+    
+    .navbar .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: white;
+      transition: width 0.3s ease;
+    }
+    
+    .navbar .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .navbar .nav-link:hover { 
+      color: #FFFFFF; 
+    }
+    
+    .navbar-brand { 
+      color: #FFFFFF !important; 
+      font-weight: 700; 
+      font-size: 1.6rem; 
+      letter-spacing: 0.5px;
+    }
+    
+    .navbar .nav-link.active { 
+      color: #FFFFFF !important; 
+      font-weight: 600; 
+    }
+    
+    .navbar .nav-link.active::after {
+      width: 100%;
     }
 
-    .navbar {
+    .carousel-item img { 
+      height: 90vh; 
+      object-fit: cover; 
+      filter: brightness(85%); 
+    }
+    
+    .carousel-caption { 
+      bottom: 25%; 
+      background-color: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 80%;
+      margin: 0 auto;
+    }
+    
+    .carousel-caption h1 { 
+      font-size: 3.2rem; 
+      font-weight: bold; 
+      color: #ffffff; 
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      margin-bottom: 15px;
+    }
+    
+    .carousel-caption p { 
+      font-size: 1.3rem; 
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      margin-bottom: 20px;
+    }
+
+    .btn-danger { 
+      background-color: #03BB85; 
+      border: none; 
+      padding: 12px 30px; 
+      border-radius: 30px; 
+      font-weight: 600; 
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .btn-danger:hover { 
+      background-color: #029e71; 
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    .section-title {
+      position: relative;
+      margin-bottom: 40px;
+      padding-bottom: 15px;
+      text-align: center;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 3px;
       background-color: #03BB85;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    .navbar .nav-link {
-      color: white;
-      margin: 0 8px;
-      font-weight: 500;
-      transition: 0.3s;
+    .card { 
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      border: none;
+      margin-bottom: 25px;
+      background-color: white;
     }
 
-    .navbar .nav-link:hover {
-      color: #FFFFFF;
-      transform: scale(1.1);
+    .card:hover { 
+      transform: translateY(-8px); 
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
     }
-
-    .navbar-brand {
-      color: #FFFFFF !important;
-      font-weight: bold;
-      font-size: 1.5rem;
+    
+    .card-body {
+      padding: 1.5rem;
     }
-
-    .navbar .nav-link.active {
-      color: #FFFFFF !important;
-      font-weight: bold;
-    }
-
-    .carousel-item img {
-      height: 90vh;
-      object-fit: cover;
-      filter: brightness(85%);
-    }
-
-    .carousel-caption {
-      bottom: 20%;
-    }
-
-    .carousel-caption h1 {
-      font-size: 3rem;
-      font-weight: bold;
+    
+    .card-title {
+      font-weight: 600;
       color: #03BB85;
-      text-shadow: 2px 2px 10px white;
+      margin-bottom: 0.8rem;
+    }
+    
+    .card-text {
+      color: #666;
+      margin-bottom: 1.2rem;
+    }
+    
+    .producto-img {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
     }
 
-    .carousel-caption p {
-      font-size: 1.2rem;
-      text-shadow: 1px 1px 8px white;
-    }
-
-    .btn-danger {
-      background-color: #b30000;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 30px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .btn-danger:hover {
-      background-color: #03BB85;
-      transform: scale(1.1);
-    }
-
-    .card {
-      border: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-red {
-      background-color: #03BB85;
-      color: white;
-      font-weight: bold;
+    .btn-red { 
+      background-color: #03BB85; 
+      color: white; 
+      font-weight: 600; 
       border-radius: 20px;
+      padding: 10px 25px;
+      transition: all 0.3s ease;
     }
-
-    .btn-red:hover {
-      background-color: #03BB85;
+    
+    .btn-red:hover { 
+      background-color: #029e71; 
       color: white;
+      transform: translateY(-3px);
     }
 
-    .nosotros {
-      background-color: #f8f9fa;
-      padding: 60px 20px;
+    .nosotros { 
+      background-color: #f8f9fa; 
+      padding: 80px 20px;
+      border-radius: 0;
+    }
+    
+    .nosotros img {
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
-    footer {
-      background-color: #03BB85;
-      color: white;
-      padding: 30px 0;
+    footer { 
+      background-color: #03BB85; 
+      color: white; 
+      padding: 40px 0 20px;
     }
-
-    footer a {
-      color: #FFFFFF;
+    
+    footer a { 
+      color: #FFFFFF; 
       text-decoration: none;
+      transition: all 0.3s ease;
+      margin: 0 10px;
     }
-
-    footer a:hover {
-      text-decoration: underline;
+    
+    footer a:hover { 
+      color: #f0f0f0;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -192,7 +285,7 @@
 
   <!-- PRODUCTOS -->
   <section id="PRODUCTOS" class="container my-5">
-    <h2 class="text-center mb-4"><strong><span style="color:white;">PRODUCTOS DE EXCELENTE CALIDAD</span></strong></h2>
+    <h2 class="section-title"><strong><span style="color:#03BB85;">PRODUCTOS DE EXCELENTE CALIDAD</span></strong></h2>
     <div class="row g-4">
       <!-- 1 -->
       <div class="col-md-4">

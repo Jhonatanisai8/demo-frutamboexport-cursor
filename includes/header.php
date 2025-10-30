@@ -32,7 +32,7 @@
           <li class="nav-item"><a class="nav-link" href="/#nosotros">Nosotros</a></li>
           <li class="nav-item"><a class="nav-link" href="/#contacto">Contáctanos</a></li>
           <li class="nav-item"><a class="nav-link" href="/#ubicacion">Ubicación</a></li>
-          <li class="nav-item"><a class="nav-link" href="/#intranet">Intranet</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="/#intranet">Intranet</a></li> -->
           <li class="nav-item"><a class="nav-link text-primary" href="/login.php">Login</a></li>
         </ul>
       </div>
