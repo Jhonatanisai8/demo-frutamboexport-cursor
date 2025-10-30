@@ -6,38 +6,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Panel - FruTamboExport</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-  <nav class="navbar navbar-light bg-white border-bottom">
+  <nav class="navbar navbar-light bg-white border-bottom navbar-sticky">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">Panel Administrativo</span>
+      <span class="navbar-brand mb-0 h1 d-flex align-items-center gap-2">
+        <img src="/assets/imgs/logo.jpg" alt="FruTamboExport" style="height:32px; width:auto;" class="rounded-2" />
+        <span class="d-none d-sm-inline fw-semibold">Panel Administrativo</span>
+      </span>
       <div class="d-flex align-items-center gap-3">
-        <span class="text-muted"><?= htmlspecialchars($_SESSION['user']['username'] ?? '') ?></span>
-        <a href="/logout.php" class="btn btn-outline-danger btn-sm">Salir</a>
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-person-circle text-primary"></i>
+          <span class="text-muted"><?= htmlspecialchars($_SESSION['user']['username'] ?? '') ?></span>
+        </div>
+        <a href="/logout.php" class="btn btn-outline-danger btn-sm d-flex align-items-center gap-1">
+          <i class="bi bi-box-arrow-right"></i>
+          <span class="d-none d-sm-inline">Salir</span>
+        </a>
       </div>
     </div>
   </nav>
 
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-9 py-4">
-        <?php // content injected by children ?>
-        <?= $content ?? '' ?>
-      </div>
-      <div class="col-lg-3 py-4 admin-sidebar-right">
-        <div class="card card-minimal">
-          <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action" href="/admin/index.php">Dashboard</a>
-            <a class="list-group-item list-group-item-action" href="/admin/clientes.php">Clientes</a>
-            <a class="list-group-item list-group-item-action" href="/admin/productos.php">Productos</a>
-            <a class="list-group-item list-group-item-action" href="/admin/ventas.php">Ventas</a>
-            <a class="list-group-item list-group-item-action" href="/admin/reportes.php">Reportes</a>
+    <div class="main-content py-4 animate-fade-in">
+      <?php // content injected by children ?>
+      <?= $content ?? '' ?>
+    </div>
+    <div class="admin-sidebar-right animate-slide-in">
+      <div class="card card-minimal h-100">
+        <div class="list-group list-group-flush">
+            <?php
+            $current_page = basename($_SERVER['PHP_SELF']);
+            function isActive($page) {
+                global $current_page;
+                return $current_page === $page ? 'active' : '';
+            }
+            ?>
+            <a class="list-group-item list-group-item-action d-flex align-items-center gap-2 <?= isActive('index.php') ?>" href="/admin/index.php">
+              <i class="bi bi-grid"></i> Dashboard
+              <?php if (isActive('index.php')): ?>
+                <span class="ms-auto"><i class="bi bi-chevron-right"></i></span>
+              <?php endif; ?>
+            </a>
+            <a class="list-group-item list-group-item-action d-flex align-items-center gap-2 <?= isActive('clientes.php') ?>" href="/admin/clientes.php">
+              <i class="bi bi-people"></i> Clientes
+              <?php if (isActive('clientes.php')): ?>
+                <span class="ms-auto"><i class="bi bi-chevron-right"></i></span>
+              <?php endif; ?>
+            </a>
+            <a class="list-group-item list-group-item-action d-flex align-items-center gap-2 <?= isActive('productos.php') ?>" href="/admin/productos.php">
+              <i class="bi bi-box-seam"></i> Productos
+              <?php if (isActive('productos.php')): ?>
+                <span class="ms-auto"><i class="bi bi-chevron-right"></i></span>
+              <?php endif; ?>
+            </a>
+            <a class="list-group-item list-group-item-action d-flex align-items-center gap-2 <?= isActive('ventas.php') ?>" href="/admin/ventas.php">
+              <i class="bi bi-receipt"></i> Ventas
+              <?php if (isActive('ventas.php')): ?>
+                <span class="ms-auto"><i class="bi bi-chevron-right"></i></span>
+              <?php endif; ?>
+            </a>
+            <a class="list-group-item list-group-item-action d-flex align-items-center gap-2 <?= isActive('reportes.php') ?>" href="/admin/reportes.php">
+              <i class="bi bi-bar-chart"></i> Reportes
+              <?php if (isActive('reportes.php')): ?>
+                <span class="ms-auto"><i class="bi bi-chevron-right"></i></span>
+              <?php endif; ?>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+  // Añadir animación a las cards cuando aparecen en el viewport
+  document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card-minimal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-scale-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => observer.observe(card));
+  });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

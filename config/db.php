@@ -3,7 +3,7 @@ class Database {
     private string $host = 'localhost';
     private string $db   = 'frutamboexport';
     private string $user = 'root';
-    private string $pass = '';
+    private string $pass = '753159852';
     private string $charset = 'utf8mb4';
 
     public function getConnection(): PDO {

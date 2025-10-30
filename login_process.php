@@ -9,6 +9,12 @@ $password = trim($_POST['password'] ?? '');
 
 try {
     $pdo = (new Database())->getConnection();
+} catch (Throwable $e) {
+    header('Location: /login.php?error=db');
+    exit;
+}
+
+try {
     $stmt = $pdo->prepare('SELECT id, username, password_hash, role FROM users WHERE username = ? LIMIT 1');
     $stmt->execute([$username]);
     $user = $stmt->fetch();
@@ -23,10 +29,11 @@ try {
         exit;
     }
 } catch (Throwable $e) {
-    // Log in real apps
+    header('Location: /login.php?error=query');
+    exit;
 }
 
-header('Location: /login.php?error=1');
+header('Location: /login.php?error=creds');
 exit;
 
 

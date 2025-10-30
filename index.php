@@ -1,88 +1,87 @@
-<?php $pageTitle = 'FruTamboExport - Inicio'; include __DIR__.'/includes/header.php'; ?>
+<?php $pageTitle = 'FruTamboExport - Inicio';
+include __DIR__ . '/includes/header.php'; ?>
 
-<section id="inicio" class="section hero">
+<section class="section">
   <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6">
-        <h1 class="display-5 fw-bold">Exportamos calidad, frescura y confianza</h1>
-        <p class="lead">FruTamboExport conecta los mejores cultivos con el mundo. Cumplimos estándares internacionales y trazabilidad completa.</p>
-        <a href="#productos" class="btn btn-primary btn-lg">Ver productos</a>
-      </div>
-      <div class="col-lg-6 text-center">
-        <img class="img-fluid" src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1200&auto=format&fit=crop" alt="Frutas frescas">
+    <div class="card card-brand border-0 shadow-lg rounded-4">
+      <div class="card-body p-5">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <h1 class="display-5 fw-bold mb-3">FruTamboExport</h1>
+            <p class="lead mb-4">Gestione clientes, productos y ventas con una interfaz moderna y ágil. Calidad de exportación con trazabilidad completa.</p>
+            <a href="/login.php" class="btn btn-light btn-rounded me-2">Ingresar</a>
+            <a href="#secciones" class="btn btn-outline-light btn-rounded">Conocer más</a>
+          </div>
+          <div class="col-lg-5 text-center">
+            <img class="img-fluid rounded-4 shadow" src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1200&auto=format&fit=crop" alt="Frutas frescas">
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  </section>
+</section>
 
-<section id="productos" class="section">
+<section id="secciones" class="section">
   <div class="container">
-    <h2 class="mb-4">Productos</h2>
     <div class="row g-4">
       <div class="col-md-4">
         <div class="card card-minimal h-100">
           <div class="card-body">
-            <h5 class="card-title">Mango</h5>
-            <p class="card-text">Selección premium para exportación.</p>
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h5 class="card-title mb-0">Clientes</h5>
+              <span class="badge badge-soft">🧑‍💼</span>
+            </div>
+            <p class="text-muted mb-3">Administra y mantiene tu cartera de clientes.</p>
+            <a href="/admin/clientes.php" class="stretched-link">Ir a clientes</a>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card card-minimal h-100">
           <div class="card-body">
-            <h5 class="card-title">Palta</h5>
-            <p class="card-text">Hass certificada con trazabilidad.</p>
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h5 class="card-title mb-0">Productos</h5>
+              <span class="badge badge-soft">📦</span>
+            </div>
+            <p class="text-muted mb-3">Catálogo y precios listos para la exportación.</p>
+            <a href="/admin/productos.php" class="stretched-link">Ir a productos</a>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card card-minimal h-100">
           <div class="card-body">
-            <h5 class="card-title">Uva</h5>
-            <p class="card-text">Variedades sin semilla, excelente calibre.</p>
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h5 class="card-title mb-0">Ventas</h5>
+              <span class="badge badge-soft">🧾</span>
+            </div>
+            <p class="text-muted mb-3">Registra ventas y obtén reportes al instante.</p>
+            <a href="/admin/ventas.php" class="stretched-link">Ir a ventas</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </section>
+</section>
 
-<section id="nosotros" class="section bg-light-soft">
+<section id="intranet" class="section bg-light-soft">
   <div class="container">
-    <h2 class="mb-3">Nosotros</h2>
-    <p>Somos una empresa peruana dedicada a la exportación de frutas, con estándares de calidad y cumplimiento normativo.</p>
-  </div>
-  </section>
-
-<section id="contacto" class="section">
-  <div class="container">
-    <h2 class="mb-3">Contáctanos</h2>
-    <form class="row g-3">
-      <div class="col-md-6">
-        <input type="text" class="form-control" placeholder="Nombre" required>
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+        <h2 class="mb-2">Intranet</h2>
+        <p class="mb-3">Acceso privado para gestión de Clientes, Productos, Ventas y Reportes. Disponible solo para usuarios autorizados.</p>
+        <a href="/login.php" class="btn btn-primary btn-rounded">Entrar a Intranet</a>
       </div>
-      <div class="col-md-6">
-        <input type="email" class="form-control" placeholder="Correo" required>
+      <div class="col-lg-5">
+        <div class="card card-minimal">
+          <div class="card-body">
+            <div class="d-flex justify-content-between"><span class="text-muted">Seguridad</span><span class="badge badge-soft">🔐</span></div>
+            <p class="mb-0 mt-2 text-muted">Sesiones, autenticación y control de acceso para el administrador.</p>
+          </div>
+        </div>
       </div>
-      <div class="col-12">
-        <textarea class="form-control" rows="4" placeholder="Mensaje" required></textarea>
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </div>
-    </form>
-  </div>
-  </section>
-
-<section id="ubicacion" class="section bg-light-soft">
-  <div class="container">
-    <h2 class="mb-3">Ubicación</h2>
-    <div class="ratio ratio-16x9 card-minimal">
-      <iframe src="https://www.google.com/maps?q=Lima,Peru&output=embed" style="border:0;" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
-  </section>
+</section>
 
-<?php include __DIR__.'/includes/footer.php'; ?>
-
-
+<?php include __DIR__ . '/includes/footer.php'; ?>

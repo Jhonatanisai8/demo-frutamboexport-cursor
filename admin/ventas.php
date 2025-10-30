@@ -39,40 +39,14 @@ ORDER BY v.id DESC')->fetchAll();
 ob_start();
 ?>
 <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3 class="mb-0">Ventas</h3>
-        <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#formVenta">Nueva</button>
-    </div>
-    <div id="formVenta" class="collapse mb-3">
-        <div class="card card-minimal p-3">
-            <form method="post" class="row g-2">
-                <input type="hidden" name="id" id="id">
-                <div class="col-md-4">
-                    <select class="form-select" name="cliente_id" id="cliente_id" required>
-                        <option value="">Cliente...</option>
-                        <?php foreach ($clientes as $c): ?>
-                            <option value="<?= $c['id'] ?>"><?= htmlspecialchars($c['nombre']) ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <select class="form-select" name="producto_id" id="producto_id" required>
-                        <option value="">Producto...</option>
-                        <?php foreach ($productos as $p): ?>
-                            <option value="<?= $p['id'] ?>"><?= htmlspecialchars($p['nombre']) ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="col-md-2"><input class="form-control" type="number" min="1" name="cantidad" id="cantidad" value="1" required></div>
-                <div class="col-md-2"><input class="form-control" type="date" name="fecha" id="fecha" value="<?= date('Y-m-d') ?>" required></div>
-                <div class="col-12 d-grid"><button class="btn btn-primary" type="submit">Guardar</button></div>
-            </form>
-        </div>
+    <div class="page-header">
+        <h3 class="page-title"><i class="bi bi-receipt text-primary"></i> Ventas</h3>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ventaModal"><i class="bi bi-plus"></i> Nueva</button>
     </div>
 
     <div class="card card-minimal">
         <div class="table-responsive">
-            <table class="table align-middle mb-0">
+            <table class="table table-striped table-hover align-middle mb-0">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -81,20 +55,20 @@ ob_start();
                         <th>Cantidad</th>
                         <th>Fecha</th>
                         <th>Total</th>
-                        <th></th>
+                        <th class="text-end">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($rows as $r): ?>
                         <tr>
-                            <td><?= $r['id'] ?></td>
+                            <td><span class="badge badge-soft">#<?= $r['id'] ?></span></td>
                             <td><?= htmlspecialchars($r['cliente']) ?></td>
                             <td><?= htmlspecialchars($r['producto']) ?></td>
                             <td><?= $r['cantidad'] ?></td>
                             <td><?= htmlspecialchars($r['fecha']) ?></td>
                             <td>S/ <?= number_format($r['total'], 2) ?></td>
                             <td class="text-end">
-                                <a class="btn btn-sm btn-outline-danger" href="?action=delete&id=<?= $r['id'] ?>" onclick="return confirm('¿Eliminar venta?')">Eliminar</a>
+                                <a class="btn btn-sm btn-outline-danger" href="?action=delete&id=<?= $r['id'] ?>" onclick="return confirm('¿Eliminar venta?')"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -103,6 +77,55 @@ ob_start();
         </div>
     </div>
 </div>
+
+<!-- Modal Crear/Editar Venta -->
+<div class="modal fade" id="ventaModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post">
+        <div class="modal-header">
+          <h5 class="modal-title">Venta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="id" id="id">
+          <div class="mb-3">
+            <label class="form-label">Cliente</label>
+            <select class="form-select" name="cliente_id" id="cliente_id" required>
+              <option value="">Cliente...</option>
+              <?php foreach ($clientes as $c): ?>
+                <option value="<?= $c['id'] ?>"><?= htmlspecialchars($c['nombre']) ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Producto</label>
+            <select class="form-select" name="producto_id" id="producto_id" required>
+              <option value="">Producto...</option>
+              <?php foreach ($productos as $p): ?>
+                <option value="<?= $p['id'] ?>"><?= htmlspecialchars($p['nombre']) ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div class="row g-2">
+            <div class="col-md-6">
+              <label class="form-label">Cantidad</label>
+              <input class="form-control" type="number" min="1" name="cantidad" id="cantidad" value="1" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Fecha</label>
+              <input class="form-control" type="date" name="fecha" id="fecha" value="<?= date('Y-m-d') ?>" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary" type="submit">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+ </div>
 <?php
 $content = ob_get_clean();
 include __DIR__ . '/layout.php';
