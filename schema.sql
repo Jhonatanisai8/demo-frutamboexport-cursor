@@ -1,8 +1,6 @@
--- Base de datos FruTamboExport
 CREATE DATABASE IF NOT EXISTS frutamboexport CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE frutamboexport;
 
--- Usuarios (solo admin)
 CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(64) UNIQUE NOT NULL,
@@ -10,7 +8,6 @@ CREATE TABLE IF NOT EXISTS users (
   role ENUM('admin') NOT NULL DEFAULT 'admin'
 );
 
--- Usuario admin por defecto (password: admin123)
 INSERT INTO users (username, password_hash, role)
 VALUES (
   'admin',
@@ -18,7 +15,6 @@ VALUES (
   'admin'
 ) ON DUPLICATE KEY UPDATE username = username;
 
--- Clientes
 CREATE TABLE IF NOT EXISTS clientes (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(120) NOT NULL,
@@ -26,14 +22,12 @@ CREATE TABLE IF NOT EXISTS clientes (
   telefono VARCHAR(50) NULL
 );
 
--- Productos
 CREATE TABLE IF NOT EXISTS productos (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(120) NOT NULL,
   precio DECIMAL(10,2) NOT NULL DEFAULT 0
 );
 
--- Ventas
 CREATE TABLE IF NOT EXISTS ventas (
   id INT AUTO_INCREMENT PRIMARY KEY,
   cliente_id INT NOT NULL,
